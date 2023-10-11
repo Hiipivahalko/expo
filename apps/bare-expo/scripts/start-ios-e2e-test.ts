@@ -77,6 +77,9 @@ async function testAsync(
     stdio: 'inherit',
   });
 
+  console.log(`\n💤 Waiting simulator to warm up`);
+  await delayAsync(60000);
+
   console.log(`\n🔌 Installing App - appBinaryPath[${appBinaryPath}]`);
   await spawnAsync('xcrun', ['simctl', 'install', deviceId, appBinaryPath], { stdio: 'inherit' });
 
@@ -178,4 +181,8 @@ async function ensureDirAsync(dirPath: string) {
       throw e;
     }
   }
+}
+
+function delayAsync(timeout: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, timeout));
 }
