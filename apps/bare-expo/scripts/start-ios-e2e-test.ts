@@ -5,8 +5,8 @@ import spawnAsync from '@expo/spawn-async';
 import fs from 'fs/promises';
 import path from 'path';
 
-const TARGET_DEVICE = 'iPhone 14 Pro';
-const TARGET_DEVICE_IOS_VERSION = 16;
+const TARGET_DEVICE = 'iPhone 15 Pro';
+const TARGET_DEVICE_IOS_VERSION = 17;
 const MAESTRO_GENERATED_FLOW = 'e2e/maestro-generated.yaml';
 const OUTPUT_APP_PATH = 'ios/build/Bare Expo.app';
 
@@ -77,8 +77,9 @@ async function testAsync(
     stdio: 'inherit',
   });
 
-  console.log(`\n💤 Waiting simulator to warm up`);
-  await delayAsync(60000);
+  await spawnAsync('xcrun', ['simctl', 'shutdown', deviceId]);
+  // console.log(`\n💤 Waiting simulator to warm up`);
+  // await delayAsync(60000);
 
   console.log(`\n🔌 Installing App - appBinaryPath[${appBinaryPath}]`);
   await spawnAsync('xcrun', ['simctl', 'install', deviceId, appBinaryPath], { stdio: 'inherit' });
