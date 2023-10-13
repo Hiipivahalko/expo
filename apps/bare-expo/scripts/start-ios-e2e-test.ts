@@ -73,9 +73,9 @@ async function testAsync(
 ): Promise<void> {
   console.log(`\n📱 Starting Device - name[${TARGET_DEVICE}] udid[${deviceId}]`);
   await spawnAsync('xcrun', ['simctl', 'bootstatus', deviceId, '-b'], { stdio: 'inherit' });
-  await spawnAsync('open', ['-a', 'Simulator', '--args', '-CurrentDeviceUDID', deviceId], {
-    stdio: 'inherit',
-  });
+  // await spawnAsync('open', ['-a', 'Simulator', '--args', '-CurrentDeviceUDID', deviceId], {
+  //   stdio: 'inherit',
+  // });
   
   // console.log(`\n💤 Waiting simulator to warm up`);
   // await delayAsync(60000);
